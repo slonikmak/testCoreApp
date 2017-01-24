@@ -1,4 +1,6 @@
 import config.GuiConfiguration;
+import configs.CoreConfig;
+import javafx.application.Application;
 import mainApp.GuiApp;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -8,8 +10,8 @@ import org.springframework.context.support.AbstractApplicationContext;
  */
 public class DesctopApp {
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-        ctx.register(GuiConfiguration.class);
-        GuiApp.main(args);
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(CoreConfig.class);
+        GuiApp guiApp = ctx.getBean(GuiApp.class);
+        Application.launch(guiApp.getClass(), args);
     }
 }
